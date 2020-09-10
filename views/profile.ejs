@@ -1,0 +1,46 @@
+<html>
+    <head>
+            <title><%= title %></title>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            
+            <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+        
+            <link rel="stylesheet" href="/css/open-iconic-bootstrap.min.css">
+            <link rel="stylesheet" href="css/animate.css">
+            
+            <link rel="stylesheet" href="css/owl.carousel.min.css">
+            <link rel="stylesheet" href="css/owl.theme.default.min.css">
+            <link rel="stylesheet" href="css/magnific-popup.css">
+        
+            <link rel="stylesheet" href="css/aos.css">
+        
+            <link rel="stylesheet" href="css/ionicons.min.css">
+            
+            <link rel="stylesheet" href="css/flaticon.css">
+            <link rel="stylesheet" href="css/icomoon.css">
+            <link rel="stylesheet" href="/css/style.css">
+    </head>
+   
+    <body>
+
+            <div class="container p-5"><br><br>
+                    <div class="jumbotron">
+                            <h2 class="display-4">Hello, Admin </h2>
+                            <h4>Name : <%= user.fullname  %> </h4>
+                            <h4>Email : <%= user.email  %> </h4>
+                           
+                            <hr class="my-4">
+                            <p>You can control this website from your end using the buttons below</p><br>
+                            <p class="lead">
+                              <a class="btn btn-success shadow" href="/admin/post" role="button">Make a post</a>
+                              <a href="/auth/logout" class="float-right btn btn-danger shadow">Logout</a>
+                            </p>
+                            <center><a href="/" class="btn btn-primary shadow" >Go to Blog</a></center>
+                    </div>
+             
+            </div>
+       
+
+    </body>
+</html>

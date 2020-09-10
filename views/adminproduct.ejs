@@ -1,0 +1,143 @@
+
+<html>
+    <head>
+       <title><%= title %></title>
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+       <link rel="stylesheet" href="/css/dashboard.css">
+       <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+       <link href="https://unpkg.com/ionicons@4.2.2/dist/css/ionicons.min.css" rel="stylesheet">
+       
+       <link href="https://fonts.googleapis.com/css?family=Asap|Livvic&display=swap" rel="stylesheet">
+       <!-- Global site tag (gtag.js) - Google Analytics -->
+   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-163514247-1"></script>
+   <script>
+     window.dataLayer = window.dataLayer || [];
+     function gtag(){dataLayer.push(arguments);}
+     gtag('js', new Date());
+   
+     gtag('config', 'UA-163514247-1');
+   </script>
+   
+    </head> 
+       <body>
+               <div class="">
+                   <div class="container">
+                      
+                       <div class="second" >
+   
+                           <h3>All Product Output</h3>
+                           <div class="float-right">
+                              <a href="/admin/post" class="btn btn-success" style="color:white">Post a Product</a>
+                           </div>
+   
+                         <div class="contanenr" >
+                           <div class="row">
+                               <% for (var i = 0; i < product.length; i++  ){ %>
+                                  
+                               <div class="col-sm-3 shadow p-3 mb-5 bg-white rounded">
+                                   <div class="card " >
+                                       <img src="<%= product[i].imgUrl %> " height="120px" class="card-img-top" alt="...">
+                                       <div class="card-body" style="padding:10px;">
+                                         <b class="card-title"> <%= product[i].title  %> </b>
+                                         <p class="card-text" style="font-size:12px;text-align:justify"><%= product[i].excerpt %></p>
+                                           <button  data-toggle="modal" data-target="#popup<%= i %>" aria-labelledby= "exampleModalLongTitle<%= i  %>"  class="btn btn-success" style="font-size:14px;padding:5px 35px">Edit</button>
+                                           <button  data-toggle="modal" data-target="#popup<%= i + product.length %>" class="btn btn-danger float-right" style="font-size:14px;padding:5px 25px">Delete</button>
+                                        
+                                       </div>
+                                   </div>
+                               </div>
+   
+                               <div class="modal fade" id="popup<%= i %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle<%= i  %> " aria-hidden="true">
+                                   <div class="modal-dialog" role="document">
+                                     <div class="modal-content">
+                                       <div class="modal-header">
+                                         <h5 class="modal-title" id="exampleModalLongTitle">Blog Post</h5>
+                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                           <span aria-hidden="true">&times;</span>
+                                         </button>
+                                       </div>
+                                       <div class="modal-body">
+                                           <form  action="/admin/productEdit/<%=product[i].id %>"   method="post">
+                                                
+                                               <div class="form-group">
+                                                 <label for="exampleInputEmail1">Title</label>
+                                                 <input type="text" class="form-control" required value="<%= product[i].title %>" name='title' aria-describedby="emailHelp" placeholder="Title">
+                                                 
+                                               </div>
+                                             
+                                               <div class="form-group">
+   
+                                                   <label for="exampleInputEmail1">Product Excerpt</label>
+                                                   <textarea type="text" class="form-control" value="<%= product[i].excerpt %>" name="excerpt" aria-describedby="emailHelp" required placeholder=""></textarea>
+                                                 
+                                               </div>
+                                  
+                                               <div class="form-group">
+                                                   <label for="exampleInputEmail1">Date</label>
+                                                   <input type="date" class="form-control" value="" required  name="date" aria-describedby="emailHelp" placeholder="Enter the content here">
+                                                   
+                                               </div>
+   
+                                               
+   
+                                               <button type="submit" class="btn btn-primary">Update</button>
+                                             </form>
+                                       </div>
+                                       <div class="modal-footer">
+                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                         
+                                       </div>
+                                     </div>
+                                   </div>
+                                 </div>
+   
+                                 
+                               <div class="modal fade" id="popup<%= i+ product.length  %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitles" aria-hidden="true">
+                                 <div class="modal-dialog" role="document">
+                                   <div class="modal-content" style="padding:5%">
+                                     <h4 style="font-weight:bold; text-align:center">Do you want to Delete this post ?</h4><br>
+                                    <center> 
+                                         <form action="/admin/productDelete/<%= product[i].id %>" method="post">
+                                               <input type="hidden">
+                                               <button class="btn btn-danger"  style="padding:10px 30px;" type="submit">Yes</button>  
+                                         </form>
+                                   </center>
+                                   </div>
+                                 </div>
+                               </div>
+   
+   
+                               <% } %>
+   
+   
+   <!-- 
+                                 <form action="/sermon/postd" method="post"> 
+   
+                                 </form> -->
+                              
+   
+   
+                           
+   
+                           </div>
+                         </div>
+                           
+                   </div>
+               </div>
+           
+       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+      
+       <script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-app.js"></script>
+       <script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-auth.js"></script>
+       <script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-storage.js"></script>
+       <script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-firestore.js"></script>
+       <script src="js/auth.js"></script>
+       <script  src="js/blog.js"></script>
+       <script src="js/event.js"></script>
+      
+   
+      
+     </body>
+   </html>    
